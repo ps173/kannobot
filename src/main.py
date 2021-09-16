@@ -1,5 +1,6 @@
 import os
 import discord
+import wrapper
 from discord.ext import commands
 import wikipediaapi
 from dotenv import load_dotenv
@@ -11,7 +12,38 @@ BOT_TOKEN = os.getenv('BOT_TOKEN')
 bot = commands.Bot(command_prefix='-', )
 
 
+# Anime search
+@bot.command(name="anime")
+async def animesearch(ctx, *args):
+    res = wrapper.jikan.search_anime(" ".join(args))
+    # pylint: disable=no-member #type:ignore
+    sendStr = f""" 
+    **Title** : {res["title"]}
+synopsis : {res["synopsis"]}
+__{res["url"]}__
+**score: {res["score"]}**
+**episodes : {res["episodes"]}**
+    """
+    await ctx.reply(sendStr)
+
+
+# Manga search
+@bot.command(name="manga")
+async def mangasearch(ctx, *args):
+    res = wrapper.jikan.search_manga(" ".join(args))
+    # pylint: disable=no-member type:ignore
+    sendStr = f"""
+    **{res["title"]}**\n
+{res["synopsis"]}
+__{res["url"]}__
+**score: {res["score"]}**
+**chapters : {res["chapters"]}**
+    """
+    await ctx.reply(sendStr)
+
+
 # Wikipedia Search
+
 @bot.command(name="wiki")
 async def search(ctx, *args):
     wikisearch = wikipediaapi.Wikipedia('en')
