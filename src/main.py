@@ -42,10 +42,8 @@ __{res["url"]}__
     await ctx.reply(sendStr)
 
 
-# Wikipedia Search
-
 @bot.command(name="wiki")
-async def search(ctx, *args):
+async def wikisearch(ctx, *args):
     wikisearch = wikipediaapi.Wikipedia('en')
     search_res = wikisearch.page(" ".join(args))
     if search_res.exists():
@@ -58,7 +56,7 @@ async def search(ctx, *args):
 
 # Test command
 @bot.command(name="goodbot")
-async def areuagoodbot(ctx, *args):
+async def goodbot(ctx, *args):
     if args.count("alien") >= 1:
         await ctx.reply(
             "**Hab U seen a alien pls** \n\n https://www.youtube.com/watch?v=EtxBvU21J28",

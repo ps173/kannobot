@@ -6,6 +6,9 @@ This is a general search bot and has following commands:
 - For Anime page do `-anime name`
 - For Manga page do `-manga name`
 
-And it's that easy folks.
+## Todos
 
-# More soon..
+- [x] Manga / anime search
+- [ ] Youtube Search
+- [x] Wikipedia Search
+- [ ] Google Search
